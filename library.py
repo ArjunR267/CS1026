@@ -121,6 +121,8 @@ def returnBook():
             else:
                 print('No book found!')
     return
+
+#this function allows the user to see a list of the books whether updated or not
 def listBooks():
     for book in allBooks:
         if book[0] in [isbn[0] for isbn in borrowedISBNs]:
@@ -135,9 +137,12 @@ def listBooks():
             print(book[1], '-', book[2])
             print('E:', book[3], 'ISBN:', book[0])
             print('Borrowed by:', book[4])
+            
+#final function that allows the user to see a list of all the books, this function is not needed but it was required under the project critera 
 def exit():
     print('$$$$$$$$ FINAL LIST OF BOOKS $$$$$$$$')
-
+    
+#this is the start function that calls all of the functions
 def start():
     while True:
         printMenu()

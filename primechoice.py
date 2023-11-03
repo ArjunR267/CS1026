@@ -1,9 +1,3 @@
-#CS1026a 2023
-#Assignment 01 Project 01 - Part B
-#Arjun Rathore
-#251370761
-#arathor6
-#10/08/2023
 
 #need this variable to get the user to input a starting range
 range1 = input("Please choose a number to start your range: ")
@@ -34,5 +28,3 @@ for i in range(int(range1),int(range2)+1):
             break
     if (flag == 1):
         print(i,end="\n ")
-
-print('Arjun Rathore arathor6 251370761 ')

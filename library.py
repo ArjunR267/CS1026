@@ -17,7 +17,6 @@ def printMenu():
     return
 
 # This is the second function that allows users to add books
-# This is the second function that allows users to add books
 def addBook():
     bookName = input("Book name> ")
     while '*' in bookName:
@@ -42,7 +41,18 @@ def addBook():
                     (int(internationalStandardBookNumber[5]) * 3) + (int(internationalStandardBookNumber[7]) * 3) +
                     (int(internationalStandardBookNumber[9]) * 3) + int(internationalStandardBookNumber[11]) * 3)
     trulyValidISBN = (evenValidISBN + oddValidISBN)
-
+#this part checks if the international standard book number is valid, a valid ISBN is an ISBN that follows this formula... 
+#((all (even integer values x 1) + all(odd integer values x 3))/10)
+# ex (([0]x1)+([1]x3)+[2]x1)+([3]x3)....+[12]x1)+([13]x3))
+# if the sum of this value is divisable by 10 the ISBN is valid
+# Valid ISBNs include...
+# '9780132350884'
+# '9780321125217'
+# '9780596007126'
+# '9780134494166'
+# '9780321344755'
+# etc
+    
     if int(trulyValidISBN) % 10 == 0:
         for i in allBooks:
             if internationalStandardBookNumber in i:
@@ -53,13 +63,14 @@ def addBook():
             print(allBooks)
             print(borrowedISBNs)
             return
-
+            
+#This is the function that helps allow the user to borrow a book
 def borrowBook():
     borrowerName = input("Enter the borrower name> ")
     borrowingBook = input('Search term> ')
     matchFound = False
 
-    # Finds book if it doesnt have a suffix
+    # Finds book if it doesn't have a suffix
     for book in allBooks:
         if borrowingBook.lower() in book[1].lower():
             print(book[1])
@@ -79,7 +90,7 @@ def borrowBook():
                 matchFound = True
                 borrowedISBNs.append([book[0]])
 
-    # Matches with book(s) with the first word if the borrowing statment ends with %
+    # Matches with the book(s) with the first word if the borrowing statement ends with %
     if '%' in borrowingBook[-1]:
         borrowingBook = borrowingBook[:-1]
         borrowedBookFirstWord = borrowingBook.split()[0]
@@ -90,6 +101,7 @@ def borrowBook():
                 book[-1].append(borrowerName)
                 matchFound = True
                 borrowedISBNs.append([book[0]])
+                
     # if no matches are found this output will let the user know
     if not matchFound:
         print('No book found!')
@@ -106,7 +118,6 @@ def returnBook():
         for book in allBooks:
             if returnedISBN in book[0]:
                 print(f'"{book[1]}", has been returned')
-        # print('Book has been returned.')
             else:
                 print('No book found!')
     return
